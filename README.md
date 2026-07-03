@@ -8,10 +8,29 @@ The frontend uses Bootstrap as the base CSS framework, with custom CSS for proje
 
 ### 1. Start PostgreSQL
 
+Use a locally installed PostgreSQL server. Create the project database and user once:
+
 ```bash
-cd trustfund
-docker compose up -d
+psql -U postgres
 ```
+
+```sql
+CREATE DATABASE trustfund;
+CREATE USER trustfund WITH PASSWORD 'trustfund';
+GRANT ALL PRIVILEGES ON DATABASE trustfund TO trustfund;
+\c trustfund
+GRANT ALL ON SCHEMA public TO trustfund;
+```
+
+The backend expects PostgreSQL at `localhost:5432` by default:
+
+```text
+DB_URL=jdbc:postgresql://localhost:5432/trustfund
+DB_USERNAME=trustfund
+DB_PASSWORD=trustfund
+```
+
+You can override these values if your local setup uses different credentials.
 
 ### 2. Run the backend
 
@@ -24,6 +43,9 @@ SMTP_PASSWORD="replace-with-your-new-app-password" \
 MAIL_SENDER_NAME=TrustFund \
 FRONTEND_URL=http://localhost:5173 \
 SERVER_PORT=8080 \
+DB_URL=jdbc:postgresql://localhost:5432/trustfund \
+DB_USERNAME=trustfund \
+DB_PASSWORD=trustfund \
 ./mvnw spring-boot:run
 ```
 
@@ -44,6 +66,9 @@ If another backend is still running on `8090`, stop it before testing. The front
 ```text
 SERVER_PORT=8080
 FRONTEND_URL=http://localhost:5173
+DB_URL=jdbc:postgresql://localhost:5432/trustfund
+DB_USERNAME=trustfund
+DB_PASSWORD=trustfund
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USERNAME=your-project-email@example.com
