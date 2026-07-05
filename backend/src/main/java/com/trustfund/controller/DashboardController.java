@@ -16,6 +16,7 @@ import com.trustfund.repository.MilestoneRepository;
 import com.trustfund.repository.UserRepository;
 import com.trustfund.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,8 +37,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/dashboard")
 @RequiredArgsConstructor
 public class DashboardController {
-    private static final String MAIN_ADMIN_EMAIL = "trustfund.notification@gmail.com";
-
     private final CampaignRepository campaignRepository;
     private final DonationRepository donationRepository;
     private final ComplaintRepository complaintRepository;
@@ -45,6 +44,9 @@ public class DashboardController {
     private final EscrowWalletRepository escrowWalletRepository;
     private final MilestoneRepository milestoneRepository;
     private final UserRepository userRepository;
+
+    @Value("${trustfund.main-admin.email}")
+    private String mainAdminEmail;
 
     @GetMapping("/public")
     public Map<String, Object> publicDashboard() {
@@ -100,8 +102,8 @@ public class DashboardController {
                         .toList(),
                 "currentAdmin", Map.of(
                         "email", currentEmail,
-                        "isMainAdmin", MAIN_ADMIN_EMAIL.equalsIgnoreCase(currentEmail),
-                        "mainAdminEmail", MAIN_ADMIN_EMAIL
+                        "isMainAdmin", mainAdminEmail.equalsIgnoreCase(currentEmail),
+                        "mainAdminEmail", mainAdminEmail
                 ),
                 "charts", charts()
         );

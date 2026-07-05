@@ -19,6 +19,7 @@ import com.trustfund.repository.UserRepository;
 import com.trustfund.security.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +33,6 @@ import java.util.UUID;
 @PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 public class AdminUserController {
-    private static final String MAIN_ADMIN_EMAIL = "trustfund.notification@gmail.com";
-
     private final UserRepository userRepository;
     private final CampaignRepository campaignRepository;
     private final DonationRepository donationRepository;
@@ -44,6 +43,9 @@ public class AdminUserController {
     private final EmailService emailService;
     private final AuditService auditService;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${trustfund.main-admin.email}")
+    private String mainAdminEmail;
 
     @PostMapping
     @Transactional
@@ -76,7 +78,7 @@ public class AdminUserController {
         }
         if (user.getRole() == Role.ADMIN) {
             requireMainAdmin();
-            if (MAIN_ADMIN_EMAIL.equalsIgnoreCase(user.getEmail())) {
+            if (isMainAdminAccount(user)) {
                 throw new BadRequestException("Main admin account cannot be deactivated");
             }
         }
@@ -109,7 +111,7 @@ public class AdminUserController {
     public Map<String, Object> updateProfile(@PathVariable UUID id, @Valid @RequestBody UpdateProfileRequest request) {
         User user = findUser(id);
         UUID adminId = SecurityUtils.currentUserId();
-        if (MAIN_ADMIN_EMAIL.equalsIgnoreCase(user.getEmail()) && !user.getId().equals(adminId)) {
+        if (isMainAdminAccount(user) && !user.getId().equals(adminId)) {
             throw new BadRequestException("Main admin profile can be edited only by the main admin");
         }
         user.setName(request.getName().trim());
@@ -129,7 +131,7 @@ public class AdminUserController {
         if (user.getId().equals(adminId)) {
             throw new BadRequestException("You cannot delete your own admin account");
         }
-        if (MAIN_ADMIN_EMAIL.equalsIgnoreCase(user.getEmail())) {
+        if (isMainAdminAccount(user)) {
             throw new BadRequestException("Main admin account cannot be deleted");
         }
         if (user.getRole() == Role.ADMIN) {
@@ -152,9 +154,13 @@ public class AdminUserController {
     }
 
     private void requireMainAdmin() {
-        if (!MAIN_ADMIN_EMAIL.equalsIgnoreCase(SecurityUtils.currentUser().getEmail())) {
+        if (!mainAdminEmail.equalsIgnoreCase(SecurityUtils.currentUser().getEmail())) {
             throw new BadRequestException("Only the main admin can manage admin accounts");
         }
+    }
+
+    private boolean isMainAdminAccount(User user) {
+        return mainAdminEmail.equalsIgnoreCase(user.getEmail());
     }
 
     private String reasonSuffix(String reason) {

@@ -42,6 +42,8 @@ SMTP_USERNAME=your-project-email@example.com \
 SMTP_PASSWORD="replace-with-your-new-app-password" \
 MAIL_SENDER_NAME=TrustFund \
 FRONTEND_URL=http://localhost:5173 \
+MAIN_ADMIN_EMAIL=your-main-admin@example.com \
+MAIN_ADMIN_PASSWORD="replace-with-a-secure-admin-password" \
 SERVER_PORT=8080 \
 DB_URL=jdbc:postgresql://localhost:5432/trustfund \
 DB_USERNAME=trustfund \
@@ -69,6 +71,8 @@ FRONTEND_URL=http://localhost:5173
 DB_URL=jdbc:postgresql://localhost:5432/trustfund
 DB_USERNAME=trustfund
 DB_PASSWORD=trustfund
+MAIN_ADMIN_EMAIL=your-main-admin@example.com
+MAIN_ADMIN_PASSWORD=replace-with-a-secure-admin-password
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USERNAME=your-project-email@example.com
@@ -94,9 +98,19 @@ Frontend: `http://localhost:5173`
 
 ### Default admin
 
-| Field | Value |
-|-------|-------|
-| Admin | `trustfund.notification@gmail.com` / `Admin@123456` |
+The backend creates the main admin from these environment variables:
+
+| Variable | Purpose |
+|----------|---------|
+| `MAIN_ADMIN_EMAIL` | Email used to log in as the protected main admin |
+| `MAIN_ADMIN_PASSWORD` | Initial password for that main admin |
+
+Example:
+
+```text
+MAIN_ADMIN_EMAIL=your-main-admin@example.com
+MAIN_ADMIN_PASSWORD=replace-with-a-secure-admin-password
+```
 
 Creator and donor accounts should be created through registration or by using the app UI.
 
@@ -117,6 +131,8 @@ Creator and donor accounts should be created through registration or by using th
 Key settings in `application.properties`:
 
 - `trustfund.jwt.secret` — JWT signing key (set via `JWT_SECRET` env var in production)
+- `trustfund.main-admin.email` — main admin email (set via `MAIN_ADMIN_EMAIL`)
+- `trustfund.main-admin.password` — seeded main admin password (set via `MAIN_ADMIN_PASSWORD`)
 - `trustfund.payment.mock-enabled=true` — auto-succeeds payments locally (disable for Razorpay)
 
 ## Build & Test

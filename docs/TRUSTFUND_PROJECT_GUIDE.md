@@ -138,7 +138,7 @@ view dashboard analytics
 Main admin is a special admin:
 
 ```text
-email: trustfund.notification@gmail.com
+email: configured with MAIN_ADMIN_EMAIL
 ```
 
 Main admin can:
@@ -892,12 +892,13 @@ This is what actually protects the project.
 Main admin email:
 
 ```text
-trustfund.notification@gmail.com
+MAIN_ADMIN_EMAIL from backend environment variables
 ```
 
 Written in:
 
 ```text
+backend/src/main/resources/application.properties
 backend/src/main/java/com/trustfund/config/AdminSeeder.java
 backend/src/main/java/com/trustfund/controller/AdminUserController.java
 backend/src/main/java/com/trustfund/controller/DashboardController.java

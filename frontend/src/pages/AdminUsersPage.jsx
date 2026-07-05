@@ -28,7 +28,7 @@ export default function AdminUsersPage() {
   const [editingUser, setEditingUser] = useState(null);
   const { notify } = useToast();
   const { user } = useAuth();
-  const mainAdminEmail = adminMeta?.mainAdminEmail || 'trustfund.notification@gmail.com';
+  const mainAdminEmail = (adminMeta?.mainAdminEmail || '').toLowerCase();
   const isMainAdmin = adminMeta?.isMainAdmin ?? user?.email?.toLowerCase() === mainAdminEmail;
 
   const loadUsers = () => {

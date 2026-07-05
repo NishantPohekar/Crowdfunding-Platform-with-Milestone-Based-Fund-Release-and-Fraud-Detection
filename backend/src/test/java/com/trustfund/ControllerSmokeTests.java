@@ -53,7 +53,7 @@ class ControllerSmokeTests {
                 }
                 """.formatted(donorEmail), null, 200);
 
-        String adminToken = login("trustfund.notification@gmail.com", "Admin@123456");
+        String adminToken = login("main-admin@example.com", "Admin@123456");
         String creatorToken = login(creatorEmail, "Creator@123456");
         String donorToken = login(donorEmail, "Donor@123456");
 
