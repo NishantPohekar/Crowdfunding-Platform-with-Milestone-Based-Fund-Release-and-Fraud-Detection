@@ -6,7 +6,14 @@ The frontend uses Bootstrap as the base CSS framework, with custom CSS for proje
 
 ## Quick Start
 
-### 1. Start PostgreSQL
+### 1. Clone the project
+
+```bash
+git clone https://github.com/NishantPohekar/Crowdfunding-Platform-with-Milestone-Based-Fund-Release-and-Fraud-Detection.git
+cd Crowdfunding-Platform-with-Milestone-Based-Fund-Release-and-Fraud-Detection
+```
+
+### 2. Start PostgreSQL
 
 Use a locally installed PostgreSQL server. Create the project database and user once:
 
@@ -32,7 +39,7 @@ DB_PASSWORD=trustfund
 
 You can override these values if your local setup uses different credentials.
 
-### 2. Run the backend
+### 3. Run the backend
 
 Backend must run on port `8080`.
 
@@ -86,7 +93,7 @@ MAIL_ENABLED=true
 
 Successful startup should show Tomcat running on port `8080`.
 
-### 3. Run the frontend
+### 4. Run the frontend
 
 ```bash
 cd frontend
