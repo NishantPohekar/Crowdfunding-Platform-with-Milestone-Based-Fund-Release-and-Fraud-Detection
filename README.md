@@ -8,10 +8,39 @@ The frontend uses Bootstrap as the base CSS framework, with custom CSS for proje
 
 ### 1. Clone the project
 
+Open Terminal, Command Prompt, PowerShell, or Git Bash. First go to the folder where you want to clone/download the project. Example:
+
+```bash
+cd Desktop
+```
+
+Then clone the project:
+
 ```bash
 git clone https://github.com/NishantPohekar/Crowdfunding-Platform-with-Milestone-Based-Fund-Release-and-Fraud-Detection.git
 cd Crowdfunding-Platform-with-Milestone-Based-Fund-Release-and-Fraud-Detection
 ```
+
+If Windows shows `'git' is not recognized`, install Git first.
+
+Option 1: install Git using command on Windows:
+
+```bash
+winget install --id Git.Git -e --source winget
+```
+
+Option 2: install Git manually:
+
+1. Download Git for Windows from [https://git-scm.com/download/win](https://git-scm.com/download/win).
+2. During installation, keep the option `Git from the command line and also from 3rd-party software`.
+3. Close Command Prompt or PowerShell and open it again.
+4. Check Git:
+
+```bash
+git --version
+```
+
+After Git shows a version, run the clone command again.
 
 ### Recommended tools and where to run commands
 
