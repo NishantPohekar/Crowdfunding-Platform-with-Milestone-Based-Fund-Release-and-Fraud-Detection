@@ -176,6 +176,82 @@ DB_PASSWORD=trustfund
 
 You can override these values if your local setup uses different credentials.
 
+### Where to make configuration changes
+
+Most users should not edit Java or React source code just to run the project. Change local settings in environment files or IDE environment variables.
+
+| What you want to change | Change here | Notes |
+|-------------------------|-------------|-------|
+| Database URL, username, password | `backend/.env` | Copy `backend/.env.example` to `backend/.env`, then edit the values |
+| Main admin email and password | `backend/.env` | Set `MAIN_ADMIN_EMAIL` and `MAIN_ADMIN_PASSWORD` before first backend run |
+| Gmail SMTP email and app password | `backend/.env` | Set `SMTP_USERNAME` and `SMTP_PASSWORD`; do not commit this file |
+| Sender name for emails | `backend/.env` | Set `MAIL_SENDER_NAME`, for example `TrustFund` |
+| Backend port | `backend/.env` or `backend/src/main/resources/application.properties` | Keep it `8080` unless you also update the frontend API URL |
+| Frontend backend API URL | `frontend/.env` | Copy `frontend/.env.example` to `frontend/.env`, then edit `VITE_API_BASE_URL` |
+| Default backend fallback values | `backend/src/main/resources/application.properties` | Change only if you are intentionally changing project defaults |
+| UI design, colors, spacing | `frontend/src/styles/theme.css` | Use this for frontend styling changes |
+| API request base logic | `frontend/src/services/api.js` | Usually no change needed if `VITE_API_BASE_URL` is set |
+
+Recommended local setup:
+
+Windows Command Prompt:
+
+```bash
+cd backend
+copy .env.example .env
+```
+
+Windows PowerShell:
+
+```bash
+cd backend
+Copy-Item .env.example .env
+```
+
+macOS, Linux, or Git Bash:
+
+```bash
+cd backend
+cp .env.example .env
+```
+
+Then open `backend/.env` and fill your own values:
+
+```text
+MAIN_ADMIN_EMAIL=your-main-admin@example.com
+MAIN_ADMIN_PASSWORD=replace-with-a-secure-admin-password
+DB_URL=jdbc:postgresql://localhost:5432/trustfund
+DB_USERNAME=trustfund
+DB_PASSWORD=trustfund
+SMTP_USERNAME=your-project-email@example.com
+SMTP_PASSWORD=replace-with-your-gmail-app-password
+```
+
+For frontend API URL changes:
+
+Windows Command Prompt:
+
+```bash
+cd frontend
+copy .env.example .env
+```
+
+Windows PowerShell:
+
+```bash
+cd frontend
+Copy-Item .env.example .env
+```
+
+macOS, Linux, or Git Bash:
+
+```bash
+cd frontend
+cp .env.example .env
+```
+
+Then edit `frontend/.env` only if your backend API is not running on `http://localhost:8080/api`.
+
 ### 3. Run the backend
 
 Backend must run on port `8080`.
