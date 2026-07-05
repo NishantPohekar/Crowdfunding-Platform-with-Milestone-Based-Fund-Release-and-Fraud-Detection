@@ -13,6 +13,25 @@ git clone https://github.com/NishantPohekar/Crowdfunding-Platform-with-Milestone
 cd Crowdfunding-Platform-with-Milestone-Based-Fund-Release-and-Fraud-Detection
 ```
 
+### Recommended tools and where to run commands
+
+Use the terminal for project setup commands such as `git clone`, `npm install`, and `npm run dev`.
+
+| Work | Recommended tool | Where to open/run |
+|------|------------------|-------------------|
+| Clone project | Terminal | Any folder where you want to download the project, such as Desktop |
+| Backend | IntelliJ IDEA, Eclipse, or Spring Tool Suite | Open the `backend` folder and run `TrustfundBackendApplication.java` |
+| Frontend | VS Code or terminal | Open/run commands inside the `frontend` folder |
+| Database | PostgreSQL app, pgAdmin, IntelliJ Database tab, or terminal | Connect to local PostgreSQL on `localhost:5432` |
+
+Do not run frontend commands from the project root. Run them inside the `frontend` folder:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
 ### 2. Start PostgreSQL
 
 Use a locally installed PostgreSQL server. Create the project database and user once:
