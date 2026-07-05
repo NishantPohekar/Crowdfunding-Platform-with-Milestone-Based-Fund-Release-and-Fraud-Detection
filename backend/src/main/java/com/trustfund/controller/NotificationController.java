@@ -3,7 +3,6 @@ package com.trustfund.controller;
 import com.trustfund.model.dto.NotificationResponse;
 import com.trustfund.security.SecurityUtils;
 import com.trustfund.service.NotificationService;
-import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/notifications")
 @RequiredArgsConstructor
-@Hidden
 public class NotificationController {
 
     private final NotificationService notificationService;

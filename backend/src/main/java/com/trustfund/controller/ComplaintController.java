@@ -4,7 +4,6 @@ import com.trustfund.model.dto.ComplaintResponse;
 import com.trustfund.model.dto.CreateComplaintRequest;
 import com.trustfund.security.SecurityUtils;
 import com.trustfund.service.ComplaintService;
-import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,7 +15,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/complaints")
 @RequiredArgsConstructor
-@Hidden
 public class ComplaintController {
 
     private final ComplaintService complaintService;
