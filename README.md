@@ -109,11 +109,54 @@ npm run dev
 
 ### 2. Start PostgreSQL
 
-Use a locally installed PostgreSQL server. Create the project database and user once:
+Use a locally installed PostgreSQL server.
+
+#### Install PostgreSQL locally using GUI
+
+Windows:
+
+1. Download the PostgreSQL installer from [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/).
+2. Run the installer.
+3. Select PostgreSQL Server, pgAdmin, and Command Line Tools.
+4. Set a password for the default `postgres` user and remember it.
+5. Keep the default port as `5432`.
+6. Finish installation and open pgAdmin.
+
+macOS:
+
+1. Download the PostgreSQL installer from [https://www.postgresql.org/download/macosx/](https://www.postgresql.org/download/macosx/).
+2. Run the installer.
+3. Select PostgreSQL Server, pgAdmin, and Command Line Tools.
+4. Set a password for the default `postgres` user and remember it.
+5. Keep the default port as `5432`.
+6. Finish installation and open pgAdmin.
+
+Linux:
+
+1. Install PostgreSQL from your distribution package manager or from [https://www.postgresql.org/download/linux/](https://www.postgresql.org/download/linux/).
+2. Install pgAdmin from [https://www.pgadmin.org/download/](https://www.pgadmin.org/download/) if you want a GUI.
+3. Start the PostgreSQL service.
+4. Use pgAdmin or terminal to create the project database.
+
+#### Create the project database
+
+You can create the database from pgAdmin Query Tool or from terminal.
+
+Using pgAdmin GUI:
+
+1. Open pgAdmin.
+2. Connect to the local PostgreSQL server.
+3. Right-click `Databases` -> `Create` -> `Database`.
+4. Database name: `trustfund`.
+5. Open Query Tool and run the SQL below to create the project user.
+
+Using terminal:
 
 ```bash
 psql -U postgres
 ```
+
+Run this SQL:
 
 ```sql
 CREATE DATABASE trustfund;
