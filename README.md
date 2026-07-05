@@ -227,6 +227,8 @@ SMTP_USERNAME=your-project-email@example.com
 SMTP_PASSWORD=replace-with-your-gmail-app-password
 ```
 
+If `backend/.env` is created, you do not need to add the same backend variables again in Eclipse, IntelliJ, or Spring Tool Suite Run Configurations. The backend reads `backend/.env` automatically when it starts from the `backend` folder.
+
 For frontend API URL changes:
 
 Windows Command Prompt:
@@ -256,6 +258,15 @@ Then edit `frontend/.env` only if your backend API is not running on `http://loc
 
 Backend must run on port `8080`.
 
+If you already created `backend/.env`, run:
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+If you do not want to create `backend/.env`, you can pass variables directly in the terminal:
+
 ```bash
 cd backend
 SMTP_USERNAME=your-project-email@example.com \
@@ -277,6 +288,10 @@ Swagger UI: `http://localhost:8080/swagger-ui.html`
 If another backend is still running on `8090`, stop it before testing. The frontend is configured to use `8080`.
 
 #### Eclipse backend run setup
+
+If `backend/.env` exists, just run `TrustfundBackendApplication.java` from Eclipse. You do not need to add the backend variables again in Run Configurations.
+
+If you do not want to create `backend/.env`, add the variables manually:
 
 1. Open Eclipse.
 2. Right-click the backend project.
