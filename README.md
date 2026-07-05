@@ -8,10 +8,26 @@ The frontend uses Bootstrap as the base CSS framework, with custom CSS for proje
 
 ### 1. Clone the project
 
-Open Terminal, Command Prompt, PowerShell, or Git Bash. First go to the folder where you want to clone/download the project. Example:
+Open a command-line app for your operating system:
+
+| Operating system | App to open |
+|------------------|-------------|
+| Windows | Command Prompt, PowerShell, Windows Terminal, or Git Bash |
+| macOS | Terminal |
+| Linux | Terminal |
+
+First go to the folder where you want to clone/download the project. Examples:
+
+Windows:
 
 ```bash
 cd Desktop
+```
+
+macOS or Linux:
+
+```bash
+cd ~/Desktop
 ```
 
 Then clone the project:
@@ -21,20 +37,50 @@ git clone https://github.com/NishantPohekar/Crowdfunding-Platform-with-Milestone
 cd Crowdfunding-Platform-with-Milestone-Based-Fund-Release-and-Fraud-Detection
 ```
 
-If Windows shows `'git' is not recognized`, install Git first.
+If `git` is not recognized, install Git first.
 
-Option 1: install Git using command on Windows:
+Windows:
 
 ```bash
 winget install --id Git.Git -e --source winget
 ```
 
-Option 2: install Git manually:
+Or download Git for Windows from [https://git-scm.com/download/win](https://git-scm.com/download/win). During installation, keep the option `Git from the command line and also from 3rd-party software`.
 
-1. Download Git for Windows from [https://git-scm.com/download/win](https://git-scm.com/download/win).
-2. During installation, keep the option `Git from the command line and also from 3rd-party software`.
-3. Close Command Prompt or PowerShell and open it again.
-4. Check Git:
+macOS:
+
+```bash
+xcode-select --install
+```
+
+Or, if Homebrew is installed:
+
+```bash
+brew install git
+```
+
+Linux:
+
+Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+Fedora:
+
+```bash
+sudo dnf install git
+```
+
+Arch:
+
+```bash
+sudo pacman -S git
+```
+
+After installing Git, close and reopen the terminal. Then check Git:
 
 ```bash
 git --version
